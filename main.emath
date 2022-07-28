@@ -1,0 +1,5 @@
+p = Sqrt[-X ** 2 + 100] + 3
+q = Cos[X * 2 - 4]
+d = Domain(p)
+#F = Field([p, q], "F")
+(Domain(Sum), Sum, Sum([1, 2]))
