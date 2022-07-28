@@ -1,4 +1,5 @@
-import math
+from collections.abc import Iterable
+import math, types
 import numpy as np
 
 def is_integer(x):
@@ -24,6 +25,21 @@ def Constant1(x):
 
 def x(y):
     return y
+
+def is_iterable(x):
+    return (type(x) in [list, Iterable, range])
+
+def for_function(x):
+    f = x[0]
+    iterable = x[1]
+    initial_value = x[2]
+    total = initial_value
+    for i in iterable:
+        total = f([i, total])
+    return total
+
+def for_domain_function(x):
+    return callable(x[0]) and is_iterable(x[1])
 
 def string_balance(string, chars = "()"):
     # Check if string is balanced in the string

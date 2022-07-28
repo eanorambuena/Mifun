@@ -27,11 +27,15 @@ class Domain():
     def __sub__(self, other):
         def new_f(x):
             return self.contain_function(x) and not other.contain_function(x)
-        return Domain(new_f, f"{self.name} - {other.name}")
+        return Domain(new_f, format_function(self, other, "-"))
     def __mul__(self, other):
         def new_f(x):
             return self.contain_function(x) and other.contain_function(x)
-        return Domain(new_f, f"{self.name} * {other.name}")
+        return Domain(new_f, format_function(self, other, "*"))
+    def __pow__(self, other):
+        def new_f(x):
+            return self.contain_function(x[0]) and other.contain_function(x[1])
+        return Domain(new_f, format_function(self, other, "**"))
     @property
     def short_name(self):
         result = self.name
@@ -60,9 +64,12 @@ Reals       = Domain(is_real,           "Reals")
 Positive    = Domain(is__positive,      "Positive")
 Negative    = Domain(is_negative,       "Negative")
 Zero        = Domain([0],               "Zero")
+Callables   = Domain(callable,          "Callables")
 
 NonNegative = Positive + Zero
 NonNegative.name = "NonNegative"
 
 Naturals    = Intergers * NonNegative
 Naturals.name = "Naturals"
+
+ForDomain   = Domain(for_domain_function, "ForDomain")

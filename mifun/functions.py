@@ -7,7 +7,10 @@ class Function():
         self.f = f
         self.domain = domain
         self.name = name
-    def __call__(self, x):
+    def __call__(self, *args):
+        x = list(args)
+        if len(args) == 1:
+            x = args[0]
         if not (x in self.domain):
             raise ValueError(f"Value out of domain: {self.domain}")
         return self.f(x)
@@ -141,11 +144,23 @@ class Function():
     def __inside__(self, domain):
         return self in domain
 
-I       = Function(Constant1,   dom.Reals,                      "I")
-X       = Function(x,           dom.Reals,                      "X")
-Sin     = Function(math.sin,    dom.Reals,                      "Sin")
-Cos     = Function(math.cos,    dom.Reals,                      "Cos")
-Tan     = Function(math.tan,    dom.Reals - (Cos == 0),         "Tan")
-Sqrt    = Function(math.sqrt,   dom.Reals * dom.NonNegative,    "Sqrt")
+# Mathematical Functions
+I        = Function(Constant1,    dom.Reals,                    "I")
+X        = Function(x,            dom.Reals,                    "X")
+Sin      = Function(math.sin,     dom.Reals,                    "Sin")
+Cos      = Function(math.cos,     dom.Reals,                    "Cos")
+Tan      = Function(math.tan,     dom.Reals - (Cos == 0),       "Tan")
+Sqrt     = Function(math.sqrt,    dom.Reals * dom.NonNegative,  "Sqrt")
+Sum      = Function(sum,          dom.Reals[2],                 "Sum")
 
-Sum     = Function(sum,         dom.Reals[2],                   "Sum")
+# Actional Functions
+For      = Function(for_function, dom.ForDomain,                "For")
+
+def summatory(x):
+    term_function = x[0]
+    n = x[1]
+    def new_f(y):
+        return term_function(y[0]) + y[1]
+    return For(new_f, range(0, n), 0)
+
+Summatory = Function(summatory, dom.Callables ** dom.Intergers, "Summatory")
