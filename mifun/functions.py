@@ -1,6 +1,6 @@
 from constraint import Domain
-import  engine.math_utils.domains as   dom
-from    engine.math_utils.utils import *
+import  mifun.domains as   dom
+from    mifun.utils import *
 
 class Function():
     def __init__(self, f, domain = dom.Reals, name = "Function"):
