@@ -1,4 +1,5 @@
 t = Var("t")
+
 P = Cos[t]
 Q = Sin[t]
 F = Function([P, Q, t - 3])

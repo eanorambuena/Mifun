@@ -86,3 +86,26 @@ def format_function(f, other, operation, domain = False):
         else:
             name = f"{f.name} {operation} {other}"
     return name
+
+def colour(id: int, bgcolor: int = 0):
+	if bgcolor != 0:
+		return "\033[1;" + str(id) + ";" + str(bgcolor + 10) + "m "
+	return "\033[1;" + str(id) + "m"
+
+BLACK  = 30
+RED    = 31
+GREEN  = 32
+YELLOW = 33
+BLUE   = 34
+PURPLE = 35
+CYAN   = 36
+WHITE  = 37
+
+black  = colour(BLACK)
+red    = colour(RED)
+green  = colour(GREEN)
+yellow = colour(YELLOW)
+blue   = colour(BLUE)
+purple = colour(PURPLE)
+cyan   = colour(CYAN)
+white  = colour(WHITE)
