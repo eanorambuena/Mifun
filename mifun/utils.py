@@ -29,6 +29,9 @@ def x(y):
 def is_iterable(x):
     return (type(x) in [list, Iterable, range])
 
+def is_string(x):
+    return type(x) == str
+
 def for_function(x):
     f = x[0]
     iterable = x[1]

@@ -65,6 +65,7 @@ Positive    = Domain(is__positive,      "Positive")
 Negative    = Domain(is_negative,       "Negative")
 Zero        = Domain([0],               "Zero")
 Callables   = Domain(callable,          "Callables")
+Strings     = Domain(is_string,         "Strings")
 
 NonNegative = Positive + Zero
 NonNegative.name = "NonNegative"

@@ -1,6 +1,6 @@
 import  mifun.domains as      dom
 from    mifun.utils import    *
-from    mifun.plotting import tabulate
+from    mifun.plotting import *
 
 class Function():
     def __init__(self, f, domain = dom.Reals, name = "Function"):
@@ -166,7 +166,7 @@ Sqrt     = Function(math.sqrt,    dom.Reals * dom.NonNegative,  "Sqrt")
 Sum      = Function(sum,          dom.Reals[2],                 "Sum")
 
 # Actional Functions
-For      = Function(for_function, dom.ForDomain,                "For")
+For = Function(for_function, dom.ForDomain,                "For")
 
 def summatory(x):
     term_function = x[0]
@@ -178,4 +178,6 @@ def summatory(x):
 Summatory = Function(summatory, dom.Callables ** dom.Intergers, "Summatory")
 
 # Plotting Functions
-Table     = Function(tabulate,  dom.Universe,                   "Table")
+Title         = Function(Metadata,   dom.Strings,  "Title")
+Table         = Function(tabulate,   dom.Universe, "Table")
+VerticalTable = Function(v_tabulate, dom.Universe, "VerticalTable")
