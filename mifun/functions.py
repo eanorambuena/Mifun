@@ -13,7 +13,13 @@ class Function():
             x = args[0]
         if not (x in self.domain):
             raise ValueError(f"Value out of domain: {self.domain}")
-        return self.f(x)
+        if type(self.f) == list:
+            result = []
+            for f in self.f:
+                result.append(f(x))
+            return result
+        else:
+            return self.f(x)
     def __add__(self, other):
         if other in dom.Reals:
             def ConstantOther(x):
@@ -164,3 +170,9 @@ def summatory(x):
     return For(new_f, range(0, n), 0)
 
 Summatory = Function(summatory, dom.Callables ** dom.Intergers, "Summatory")
+
+class Var(Function):
+    def __init__(self, name = "Var"):
+        super().__init__(X, dom.Reals, name)
+    def __repr__(self):
+        return f"Var({self.name})"
