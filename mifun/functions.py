@@ -1,6 +1,6 @@
-from constraint import Domain
-import  mifun.domains as   dom
-from    mifun.utils import *
+import  mifun.domains as      dom
+from    mifun.utils import    *
+from    mifun.plotting import tabulate
 
 class Function():
     def __init__(self, f, domain = dom.Reals, name = "Function"):
@@ -150,6 +150,12 @@ class Function():
     def __inside__(self, domain):
         return self in domain
 
+class Var(Function):
+    def __init__(self, name = "Var"):
+        super().__init__(X, dom.Reals, name)
+    def __repr__(self):
+        return f"Var({self.name})"
+
 # Mathematical Functions
 I        = Function(Constant1,    dom.Reals,                    "I")
 X        = Function(x,            dom.Reals,                    "X")
@@ -171,8 +177,5 @@ def summatory(x):
 
 Summatory = Function(summatory, dom.Callables ** dom.Intergers, "Summatory")
 
-class Var(Function):
-    def __init__(self, name = "Var"):
-        super().__init__(X, dom.Reals, name)
-    def __repr__(self):
-        return f"Var({self.name})"
+# Plotting Functions
+Table     = Function(tabulate,  dom.Universe,                   "Table")

@@ -1,6 +1,6 @@
 t = Var("t")
 P = Cos[t]
 Q = Sin[t]
-F = Function([P, Q])
+F = Function([P, Q, t - 3])
 result = For(Sum, range(0, 6), 0)
-(Domain(Sum), Sum(1, 2, 3), result, Summatory(X, 7), Domain(Summatory), F(0))
+Table(Domain(Sum), Sum(1, 2, 3), result, Summatory(X, 7), Domain(Summatory), F(0))
