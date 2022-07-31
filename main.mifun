@@ -1,9 +1,0 @@
-t = Var("t")
-
-P = Cos[t]
-Q = Sin[t]
-F = Function([P, Q, t - 3])
-
-domains = VerticalTable(Domain(Sum), Domain(Summatory), Title("Domains"))
-
-Table(domains, For(Sum, range(0, 6), 0), Sum(1, 2, 3), Summatory(X, 7), F(0), Title("Result"))

@@ -1,0 +1,8 @@
+t = Var("t")
+
+F = Function([ Cos[t], Sin[t], t - 3 ])
+
+domains = VerticalTable(Domain(Sum), Domain(Summatory), Title("Domains"))
+results = VerticalTable(Summatory(X ** 2, 7), F(0), Title("Results"))
+
+Table(domains, results)
