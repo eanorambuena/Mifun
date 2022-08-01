@@ -4,3 +4,5 @@ b = 9
 Weistrass = I * 0
 for n in range(3):
     Weistrass += Cos[X * (b ** n * math.pi)] * (a ** n)
+
+Table(Weistrass)

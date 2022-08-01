@@ -145,8 +145,11 @@ class Function():
         return dom.Domain(new_f, name)
     @property
     def short_name(self):
-        result = self.name[1:]
-        return self.name[0] + result.replace("I *", "")
+        result = self.name
+        result = result.replace("I * 0.0 + ", "").replace("I * 0.0 - ", "-").replace("I * 0 + ", "").replace("I * 0 - ", "-")
+        result = result.replace(" * I * 1.0", "").replace(" * I * 1", "").replace(" + I * 1.0", "").replace(" + I * 1", "")
+        result = result.replace(" ** 1.0", "").replace(" ** 1", "").replace(" * 1.0", "").replace(" * 1", "")
+        return result.strip()
     def __repr__(self):
         return self.short_name
     def __str__(self):
