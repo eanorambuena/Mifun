@@ -11,4 +11,4 @@ Mifun: Minimal Function Notation fully compatible with Python>3.5
 #### Write this:
 ![image](https://user-images.githubusercontent.com/38821970/182062996-03b7f54c-b24e-43c1-a162-2d6cc672d7c5.png)
 #### Instead of this:
-![image](https://user-images.githubusercontent.com/38821970/182062161-9f327bb2-be5a-4713-86af-35fd06c034fc.png)
+![image](https://user-images.githubusercontent.com/38821970/182063341-e04bb4ce-0c71-498e-8662-fc027a1a5271.png)
