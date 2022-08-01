@@ -9,6 +9,6 @@ Mifun: Minimal Function Notation fully compatible with Python>3.5
 
 ### Example 02
 #### Write this:
-![image](https://user-images.githubusercontent.com/38821970/182062848-1e99b96a-dd7e-4e4e-a847-d7c8de2a0fa7.png)
+![image](https://user-images.githubusercontent.com/38821970/182062996-03b7f54c-b24e-43c1-a162-2d6cc672d7c5.png)
 #### Instead of this:
 ![image](https://user-images.githubusercontent.com/38821970/182062161-9f327bb2-be5a-4713-86af-35fd06c034fc.png)
