@@ -143,12 +143,14 @@ class Function():
         else:
             name = format_function(self, domain, "%")
         return dom.Domain(new_f, name)
+    @property
+    def short_name(self):
+        result = self.name[1:]
+        return self.name[0] + result.replace("I *", "")
     def __repr__(self):
-        return self.name
+        return self.short_name
     def __str__(self):
         return repr(self)
-    def __inside__(self, domain):
-        return self in domain
 
 class Var(Function):
     def __init__(self, name = "Var"):
