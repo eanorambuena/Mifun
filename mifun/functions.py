@@ -174,6 +174,8 @@ def summatory(x):
     n = x[1]
     def new_f(y):
         return term_function(y[0]) + y[1]
+    if len(x) == 3:
+        return For(new_f, range(0, n), x[2])
     return For(new_f, range(0, n), 0)
 
 Summatory = Function(summatory, dom.Callables ** dom.Intergers, "Summatory")

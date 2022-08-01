@@ -66,6 +66,7 @@ Negative    = Domain(is_negative,       "Negative")
 Zero        = Domain([0],               "Zero")
 Callables   = Domain(callable,          "Callables")
 Strings     = Domain(is_string,         "Strings")
+Iterables   = Domain(is_iterable,       "Iterables")
 
 NonNegative = Positive + Zero
 NonNegative.name = "NonNegative"

@@ -2,5 +2,7 @@ a = 0.1
 b = 9
 
 Weistrass = I * 0
-for n in range(100):
-    Weistrass =  Weistrass + Cos[X * (b ** n * pi)] * (a ** n)
+for n in range(3):
+    Weistrass =  Weistrass + Cos[X * (b ** n * math.pi)] * (a ** n)
+
+Table(Weistrass)
