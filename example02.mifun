@@ -3,4 +3,4 @@ b = 9
 
 Weistrass = I * 0
 for n in range(3):
-    Weistrass =  Weistrass + Cos[X * (b ** n * math.pi)] * (a ** n)
+    Weistrass += Cos[X * (b ** n * math.pi)] * (a ** n)

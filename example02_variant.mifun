@@ -3,8 +3,8 @@ b = 9
 
 def Weistrass(x):
     if type(x) not in [int, float]:
-        raise ValueError(f"Value out of domain: {self.domain}")
-    result = I * 0
+        raise ValueError(f"Value out of domain: Reals")
+    result = 0
     for n in range(3):
         result += math.cos(x * (b ** n * math.pi)) * (a ** n)
     return result
