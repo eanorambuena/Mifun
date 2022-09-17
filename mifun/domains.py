@@ -4,7 +4,7 @@ from mifun.utils import *
 
 class Domain():
     def __init__(self, contain_function = is_real, name = "Domain"):
-        if type(contain_function) == list:
+        if type(contain_function) in [list, tuple]:
             list_domain = contain_function
             def contain_function(x):
                 return x in list_domain
@@ -52,21 +52,25 @@ class Domain():
         else:
             name = f"{self.name}[{dimension}]"
         return Domain(new_f, name)
+    def __hash__(self):
+        return hash(self.contain_function)
     def __repr__(self): 
         return self.short_name
     def __str__(self):
         return repr(self)
 
-Universe    = Domain(universal_truth,   "Universe")
-EmptySet    = Domain(universal_falsity, "EmptySet")
-Intergers   = Domain(is_integer,        "Intergers")
-Reals       = Domain(is_real,           "Reals")
-Positive    = Domain(is__positive,      "Positive")
-Negative    = Domain(is_negative,       "Negative")
-Zero        = Domain([0],               "Zero")
-Callables   = Domain(callable,          "Callables")
-Strings     = Domain(is_string,         "Strings")
-Iterables   = Domain(is_iterable,       "Iterables")
+Universe    = Domain(universal_truth,      "Universe")
+EmptySet    = Domain(universal_falsity,    "EmptySet")
+Intergers   = Domain(is_integer,           "Intergers")
+Reals       = Domain(is_real,              "Reals")
+Positive    = Domain(is__positive,         "Positive")
+Negative    = Domain(is_negative,          "Negative")
+Zero        = Domain([0],                  "Zero")
+Callables   = Domain(callable,             "Callables")
+Strings     = Domain(is_string,            "Strings")
+Iterables   = Domain(is_iterable,          "Iterables")
+Evens       = Domain(lambda x: x % 2 == 0, "Evens")
+Odds        = Domain(lambda x: x % 2 == 1, "Odds")
 
 NonNegative = Positive + Zero
 NonNegative.name = "NonNegative"
