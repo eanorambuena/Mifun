@@ -29,8 +29,10 @@ class Function():
             def ConstantOther(x):
                 return other
             return self + Function(ConstantOther, name = str(other))
+
         def new_f(x):
             return self.f(x) + other.f(x)
+
         return Function(new_f, self.domain * other.domain, f"{self.name} + {other}")
 
     def __key(self):
@@ -41,11 +43,15 @@ class Function():
 
     def __sub__(self, other):
         if other in dom.Reals:
+
             def ConstantOther(x):
                 return other
+
             return self - Function(ConstantOther, name = str(other))
+
         def new_f(x):
             return self.f(x) - other.f(x)
+
         if " " in other.name:
             name = f"{self.name} - ({other})"
         else:
@@ -54,37 +60,51 @@ class Function():
 
     def __mul__(self, other):
         if other in dom.Reals:
+
             def ConstantOther(x):
                 return other
+
             return self * Function(ConstantOther, name = str(other))
+
         def new_f(x):
             return self.f(x) * other.f(x)
+
         name = format_function(self, other, "*")
         return Function(new_f, self.domain * other.domain, name)
 
     def __pow__(self, other):
         if other in dom.Reals:
+
             def ConstantOther(x):
                 return other
+
             return self ** Function(ConstantOther, name = str(other))
+
         def new_f(x):
             return self.f(x) ** other.f(x)
+
         name = format_function(self, other, "**")
         return Function(new_f, self.domain * other.domain, name)
 
     def __truediv__(self, other):
         if other in dom.Reals:
+
             def ConstantOther(x):
                 return other
+
             return self / Function(ConstantOther, name = str(other))
+
         def new_f(x):
             return self.f(x) / other.f(x)
+
         name = format_function(self, other, "/")
         return Function(new_f, self.domain * other.domain - (other == 0), name)
 
     def __neg__(self):
+
         def new_f(x):
             return -self.f(x)
+
         if " " in self.name:
             name = f"-({self.name})"
         else:
@@ -98,8 +118,10 @@ class Function():
             name = f"{self.name}[{other}]"
         
         if type(other) != Function:
+
             def new_f(x):
                 return other
+
             return Function(new_f, self.domain, name)
 
         def new_f(x):
@@ -109,61 +131,87 @@ class Function():
 
     def __eq__(self, other):
         if other in dom.Reals:
+
             def ConstantOther(x):
                 return other
+
             return self == Function(ConstantOther, name = str(other))
+
         def new_f(x):
             return self.f(x) == other.f(x)
+
         return dom.Domain(new_f, f"({self.name} == {other})")
 
     def __ne__(self, other):
         if other in dom.Reals:
+
             def ConstantOther(x):
                 return other
+
             return self != Function(ConstantOther, name = str(other))
+
         def new_f(x):
             return self.f(x) != other.f(x)
+
         return dom.Domain(new_f, f"({self.name} != {other})")
 
     def __lt__(self, other):
         if other in dom.Reals:
+
             def ConstantOther(x):
                 return other
+
             return self < Function(ConstantOther, name = str(other))
+            
         def new_f(x):
             return self.f(x) < other.f(x)
+
         return dom.Domain(new_f, f"({self.name} < {other})")
 
     def __le__(self, other):
         if other in dom.Reals:
+
             def ConstantOther(x):
                 return other
+
             return self <= Function(ConstantOther, name = str(other))
+
         def new_f(x):
             return self.f(x) <= other.f(x)
+
         return dom.Domain(new_f, f"({self.name} <= {other})")
 
     def __gt__(self, other):
         if other in dom.Reals:
+
             def ConstantOther(x):
                 return other
+
             return self > Function(ConstantOther, name = str(other))
+
         def new_f(x):
             return self.f(x) > other.f(x)
+
         return dom.Domain(new_f, f"({self.name} > {other})")
 
     def __ge__(self, other):
         if other in dom.Reals:
+
             def ConstantOther(x):
                 return other
+
             return self >= Function(ConstantOther, name = str(other))
+
         def new_f(x):
             return self.f(x) >= other.f(x)
+
         return dom.Domain(new_f, f"({self.name} >= {other})")
 
     def __mod__(self, domain):
+
         def new_f(x):
             return self.f(x) in domain
+            
         if domain == dom.Positive:
             name = f"({self.name} > 0)"
         elif domain == dom.Negative:
@@ -205,7 +253,7 @@ Cos      = Function(math.cos,            dom.Reals,                    "Cos")
 Tan      = Function(math.tan,            dom.Reals - (Cos == 0),       "Tan")
 Sqrt     = Function(math.sqrt,           dom.Reals * dom.NonNegative,  "Sqrt")
 Sum      = Function(sum,                 dom.Reals[2],                 "Sum")
-Element  = Function(lambda x, y: x in y, dom.Universe[2],                 "Element")
+Element  = Function(lambda x, y: x in y, dom.Universe[2],               "Element")
 
 # Actional Functions
 Add = Function(lambda x, y: x + y, dom.Universe[2], "Add")
@@ -214,8 +262,10 @@ For = Function(for_function,       dom.ForDomain,   "For")
 def summatory(x):
     term_function = x[0]
     n = x[1]
+
     def new_f(y):
         return term_function(y[0]) + y[1]
+        
     if len(x) == 3:
         return For(new_f, range(0, n), x[2])
     return For(new_f, range(0, n), 0)
@@ -230,11 +280,16 @@ Table         = Function(tabulate,   dom.Universe, "Table")
 VerticalTable = Function(v_tabulate, dom.Universe, "VerticalTable")
 
 # Style Functions
-Black  = Function(lambda x: black + x,  dom.Strings, "Black")
-Red    = Function(lambda x: red + x,    dom.Strings, "Red")
-Green  = Function(lambda x: green + x,  dom.Strings, "Green")
-Blue   = Function(lambda x: blue + x,   dom.Strings, "Blue")
-Yellow = Function(lambda x: yellow + x, dom.Strings, "Yellow")
-Cyan   = Function(lambda x: cyan + x,   dom.Strings, "Cyan")
-Purple = Function(lambda x: purple + x, dom.Strings, "Purple")
-White  = Function(lambda x: white + x,  dom.Strings, "White")
+Black  = Function(lambda x: black + x + white,  dom.Strings, "Black")
+Red    = Function(lambda x: red + x + white,    dom.Strings, "Red")
+Green  = Function(lambda x: green + x + white,  dom.Strings, "Green")
+Blue   = Function(lambda x: blue + x + white,   dom.Strings, "Blue")
+Yellow = Function(lambda x: yellow + x + white, dom.Strings, "Yellow")
+Cyan   = Function(lambda x: cyan + x + white,   dom.Strings, "Cyan")
+Purple = Function(lambda x: purple + x + white, dom.Strings, "Purple")
+White  = Function(lambda x: white + x,          dom.Strings, "White")
+
+# Type Functions
+Int    = Function(int,    dom.Reals,    "Int")
+Float  = Function(float,  dom.Reals,    "Float")
+String = Function(str,    dom.Universe, "String")

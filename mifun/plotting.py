@@ -2,7 +2,9 @@ from prettytable import PrettyTable as pt
 
 from mifun.domains import Iterables
 
+
 class Metadata():
+    
     def __init__(self, title = "Outputs"):
         self.title = title
 
