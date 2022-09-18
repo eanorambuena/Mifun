@@ -40,19 +40,21 @@ VerticalTable = Function(v_tabulate, dom.Universe, "VerticalTable")
 
 def print_f(x):
     try :
+        if x not in dom.Iterables:
+            x = [x]
+
         if  len(x) == 0:
             print()
-        elif x[-1] in dom.Dictionaries:
-            if len(x[0:-1]) == 0:
-                print()
-            else:
-                print(*x[0:-1], **x[-1])
-        else:
-            print(x)
-    except TypeError:
+            return
+
+        kwargs = x[-1]
+        args = x[0:-1]
+        print(*args, **kwargs)
+
+    except RuntimeError:
         print(x)
 
-Print         = Function(print_f, name = "Print")
+Print         = Function(print_f, name = "Print", catch_kwargs = True)
 Print0        = Function(lambda x: print(x, end = ""), name = "Print0")
 
 # Style Functions

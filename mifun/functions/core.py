@@ -4,15 +4,19 @@ from    mifun.plotting import *
 
 class Function():
 
-    def __init__(self, f, domain = dom.Universe, name = "Function"):
+    def __init__(self, f, domain = dom.Universe, name = "Function", catch_kwargs = False):
         self.f = f
         self.domain = domain
         self.name = name
+        self.catch_kwargs = catch_kwargs
 
-    def __call__(self, *args):
+    def __call__(self, *args, **kwargs):
         x = list(args)
-        if len(args) == 1:
-            x = args[0]
+        if self.catch_kwargs:
+            x.append(kwargs)
+        else:
+            if len(args) == 1:
+                x = args[0]
         if not (x in self.domain):
             raise ValueError(f"Value out of domain: {self.domain}")
         if type(self.f) == list:
