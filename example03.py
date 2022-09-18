@@ -1,5 +1,4 @@
-from mifun import Cos, I, X, Evens, Odds, Print, Green, String
-from scopes import scope, switch
+from mifun import Cos, I, X, Evens, Odds, Print, Green, String, scope, switch
 import math
 
 a = 0.1

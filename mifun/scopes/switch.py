@@ -1,8 +1,6 @@
-from mifun import Callables
-
 def switch(variable, dictionary: dict):
     for value in dictionary.values():
-        if value not in Callables:
+        if not callable(value):
             return
     if variable in dictionary.keys():
         try:
