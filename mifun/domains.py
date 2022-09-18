@@ -83,23 +83,25 @@ class Domain():
     def __str__(self):
         return repr(self)
 
-Universe    = Domain(universal_truth,      "Universe")
-EmptySet    = Domain(universal_falsity,    "EmptySet")
-Intergers   = Domain(is_integer,           "Intergers")
-Reals       = Domain(is_real,              "Reals")
-Positive    = Domain(is__positive,         "Positive")
-Negative    = Domain(is_negative,          "Negative")
-Zero        = Domain([0],                  "Zero")
-Callables   = Domain(callable,             "Callables")
-Strings     = Domain(is_string,            "Strings")
-Iterables   = Domain(is_iterable,          "Iterables")
-Evens       = Domain(lambda x: x % 2 == 0, "Evens")
-Odds        = Domain(lambda x: x % 2 == 1, "Odds")
+Universe     = Domain(universal_truth,      "Universe")
+EmptySet     = Domain(universal_falsity,    "EmptySet")
+Intergers    = Domain(is_integer,           "Intergers")
+Reals        = Domain(is_real,              "Reals")
+Positive     = Domain(is__positive,         "Positive")
+Negative     = Domain(is_negative,          "Negative")
+Zero         = Domain([0],                  "Zero")
+Callables    = Domain(callable,             "Callables")
+Strings      = Domain(is_string,            "Strings")
+Iterables    = Domain(is_iterable,          "Iterables")
+Evens        = Domain(lambda x: x % 2 == 0, "Evens")
+Odds         = Domain(lambda x: x % 2 == 1, "Odds")
 
-NonNegative = Positive + Zero
+Dictionaries = Domain(lambda x: isinstance(x, dict), "Dictionaries")
+
+NonNegative  = Positive + Zero
 NonNegative.name = "NonNegative"
 
-Naturals    = Intergers * NonNegative
+Naturals     = Intergers * NonNegative
 Naturals.name = "Naturals"
 
-ForDomain   = Domain(for_domain_function, "ForDomain")
+ForDomain    = Domain(for_domain_function, "ForDomain")

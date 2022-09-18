@@ -3,6 +3,7 @@ import mifun.domains as            dom
 from   mifun.functions.core import Function
 from   mifun.utils import          *
 from   mifun.plotting import       *
+from   mifun.scopes import         scope
 
 # Mathematical Functions
 I        = Function(Constant1,           dom.Reals,                    "I")
@@ -32,11 +33,23 @@ def summatory(x):
 Summatory = Function(summatory, dom.Callables ** dom.Intergers, "Summatory")
 
 # Plotting Functions
-Print         = Function(print, name = "Print")
-Print0        = Function(lambda x: print(x, end = ""), name = "Print0")
 Title         = Function(Metadata,   dom.Strings,  "Title")
 Table         = Function(tabulate,   dom.Universe, "Table")
 VerticalTable = Function(v_tabulate, dom.Universe, "VerticalTable")
+
+def print_f(x):
+    if  len(x) == 0:
+        print()
+    elif x[-1] in dom.Dictionaries:
+        if len(x[0:-1]) == 0:
+            print()
+        else:
+            print(*x[0:-1], **x[-1])
+    else:
+        print(x)
+
+Print         = Function(print_f, name = "Print")
+Print0        = Function(lambda x: print(x, end = ""), name = "Print0")
 
 # Style Functions
 Black  = Function(lambda x: black + x + white,  dom.Strings, "Black")
@@ -52,3 +65,7 @@ White  = Function(lambda x: white + x,          dom.Strings, "White")
 Int    = Function(int,    dom.Reals,    "Int")
 Float  = Function(float,  dom.Reals,    "Float")
 String = Function(str,    dom.Universe, "String")
+
+# Scope Functions
+Scope  = Function(lambda x: Function(scope(x)),    dom.Dictionaries,               "Scope")
+Map    = Function(lambda x: list(map(x[0], x[1])), dom.Callables ** dom.Iterables, "Map")
