@@ -17,4 +17,4 @@ Mifun: Minimal Function Notation fully compatible with Python>3.5
 #### Meet scopes:
 ![image](https://user-images.githubusercontent.com/38821970/190883719-4e172ffe-dd95-4c4d-b641-d895ac091fc6.png)
 #### Output:
-![image](https://user-images.githubusercontent.com/38821970/190883735-9a340b26-9d37-4f16-9fdf-0b31d47a9555.png)
+![image](https://user-images.githubusercontent.com/38821970/190883784-c79a0f36-378c-4086-87bf-e04a3afa4d81.png)
