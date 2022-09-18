@@ -6,6 +6,17 @@ from   mifun.plotting import       *
 from   mifun.scopes import         scope
 from   mifun.types import          NumberType
 
+def call_catching_kwargs(function, x):
+    if x not in dom.Iterables:
+        x = [x]
+
+    if  len(x) == 0:
+        return function()
+
+    kwargs = x[-1]
+    args = x[0:-1]
+    return function(*args, **kwargs)
+
 # Mathematical Functions
 I        = Function(Constant1,           dom.Reals,                    "I")
 X        = Function(x,                   dom.Reals,                    "X")
@@ -38,24 +49,8 @@ Title         = Function(Metadata,   dom.Strings,  "Title")
 Table         = Function(tabulate,   dom.Universe, "Table")
 VerticalTable = Function(v_tabulate, dom.Universe, "VerticalTable")
 
-def print_f(x):
-    try :
-        if x not in dom.Iterables:
-            x = [x]
-
-        if  len(x) == 0:
-            print()
-            return
-
-        kwargs = x[-1]
-        args = x[0:-1]
-        print(*args, **kwargs)
-
-    except RuntimeError:
-        print(x)
-
-Print         = Function(print_f, name = "Print", catch_kwargs = True)
-Print0        = Function(lambda x: print(x, end = ""), name = "Print0")
+Print         = Function(lambda x: call_catching_kwargs(print, x), name = "Print", catch_kwargs = True)
+Print0        = Function(lambda x: print(x, end = ""),             name = "Print0")
 
 # Style Functions
 Black  = Function(lambda x: black + x + white,  dom.Strings, "Black")
