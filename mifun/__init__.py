@@ -4,3 +4,4 @@ from mifun.domains   import (
 )
 from mifun.functions import *
 from mifun.scopes    import *
+from mifun.types     import NumberType

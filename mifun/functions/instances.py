@@ -4,6 +4,7 @@ from   mifun.functions.core import Function
 from   mifun.utils import          *
 from   mifun.plotting import       *
 from   mifun.scopes import         scope
+from   mifun.types import          NumberType
 
 # Mathematical Functions
 I        = Function(Constant1,           dom.Reals,                    "I")
@@ -38,14 +39,17 @@ Table         = Function(tabulate,   dom.Universe, "Table")
 VerticalTable = Function(v_tabulate, dom.Universe, "VerticalTable")
 
 def print_f(x):
-    if  len(x) == 0:
-        print()
-    elif x[-1] in dom.Dictionaries:
-        if len(x[0:-1]) == 0:
+    try :
+        if  len(x) == 0:
             print()
+        elif x[-1] in dom.Dictionaries:
+            if len(x[0:-1]) == 0:
+                print()
+            else:
+                print(*x[0:-1], **x[-1])
         else:
-            print(*x[0:-1], **x[-1])
-    else:
+            print(x)
+    except TypeError:
         print(x)
 
 Print         = Function(print_f, name = "Print")
@@ -69,3 +73,6 @@ String = Function(str,    dom.Universe, "String")
 # Scope Functions
 Scope  = Function(lambda x: Function(scope(x)),    dom.Dictionaries,               "Scope")
 Map    = Function(lambda x: list(map(x[0], x[1])), dom.Callables ** dom.Iterables, "Map")
+
+# Generative Functions
+Range  = Function(lambda x: [NumberType(n) for n in range(x)], dom.Intergers, "Range")
