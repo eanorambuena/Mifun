@@ -72,6 +72,16 @@ Int    = Function(int,    dom.Reals,    "Int")
 Float  = Function(float,  dom.Reals,    "Float")
 String = Function(str,    dom.Universe, "String")
 
+def var(x):
+    if len(x) != 3:
+        raise TypeError("var() takes exactly 3 arguments ({} given)".format(len(x)))
+    name = x[0]
+    domain = x[1]
+    index = x[2]
+    return Function(lambda x: x[index], domain = domain, name = name)
+
+Var = Function(var, domain = dom.Universe[3], name = "Var")
+
 # Scope Functions
 Scope  = Function(lambda x: Function(scope(x)),    dom.Dictionaries,               "Scope")
 Map    = Function(lambda x: list(map(x[0], x[1])), dom.Callables ** dom.Iterables, "Map")

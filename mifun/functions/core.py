@@ -17,8 +17,8 @@ class Function():
         else:
             if len(args) == 1:
                 x = args[0]
-        if not (x in self.domain):
-            raise ValueError(f"Value out of domain: {self.domain}")
+        if (x not in self.domain):
+            raise ValueError(f"Value {x} out of domain: {self.domain}")
         if type(self.f) == list:
             result = []
             for f in self.f:
