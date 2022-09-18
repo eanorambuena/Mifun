@@ -7,15 +7,20 @@ from   mifun.scopes import         scope
 from   mifun.types import          NumberType
 
 def call_catching_kwargs(function, x):
-    if x not in dom.Iterables:
-        x = [x]
+    try:
+        if x not in dom.Iterables:
+            x = [x]
 
-    if  len(x) == 0:
-        return function()
+        if  len(x) == 0:
+            return function()
 
-    kwargs = x[-1]
-    args = x[0:-1]
-    return function(*args, **kwargs)
+        kwargs = x[-1]
+        args = x[0:-1]
+        return function(*args, **kwargs)
+    except TypeError:
+        if type(x) == list:
+            return function(x[0])
+        return function(x)
 
 # Mathematical Functions
 I        = Function(Constant1,           dom.Reals,                    "I")
@@ -53,14 +58,14 @@ Print         = Function(lambda x: call_catching_kwargs(print, x), name = "Print
 Print0        = Function(lambda x: print(x, end = ""),             name = "Print0")
 
 # Style Functions
-Black  = Function(lambda x: black + x + white,  dom.Strings, "Black")
-Red    = Function(lambda x: red + x + white,    dom.Strings, "Red")
-Green  = Function(lambda x: green + x + white,  dom.Strings, "Green")
-Blue   = Function(lambda x: blue + x + white,   dom.Strings, "Blue")
+Black  = Function(lambda x: black  + x + white, dom.Strings, "Black")
+Red    = Function(lambda x: red    + x + white, dom.Strings, "Red")
+Green  = Function(lambda x: green  + x + white, dom.Strings, "Green")
+Blue   = Function(lambda x: blue   + x + white, dom.Strings, "Blue")
 Yellow = Function(lambda x: yellow + x + white, dom.Strings, "Yellow")
-Cyan   = Function(lambda x: cyan + x + white,   dom.Strings, "Cyan")
+Cyan   = Function(lambda x: cyan   + x + white, dom.Strings, "Cyan")
 Purple = Function(lambda x: purple + x + white, dom.Strings, "Purple")
-White  = Function(lambda x: white + x,          dom.Strings, "White")
+White  = Function(lambda x: white  + x,         dom.Strings, "White")
 
 # Type Functions
 Int    = Function(int,    dom.Reals,    "Int")
